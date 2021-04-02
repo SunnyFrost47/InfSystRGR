@@ -1,0 +1,10 @@
+create database rgr_atrs;
+create table flights (id serial, whence char(15) not null, whither char(15) not null, departure_time char(30) not null, arrival_time char(30) not null, company char(10) not null, airplane char(10) not null, platform int not null);
+create table passangers (id serial, passport char(11) not null, lugg_weight int not null, gender char(5) not null);
+create table registers (id serial, id_flight int not null, id_passanger int not null, presence int not null);
+create table dir_city (id serial, name char(15) not null);
+create table dir_company (id serial, name char(10) not null);
+create table dir_plane (id serial, name char(10) not null);
+
+select flights.id as "id",whence,whither,departure_time,arrival_time,dir_company.name as "company",dir_plane.name as "airplane",platform from flights join dir_company on flights.id_company = dir_company.id join dir_plane on flights.id_airplane = dir_plane.id;
+	
